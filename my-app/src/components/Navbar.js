@@ -1,29 +1,35 @@
-import React, { useState,useEfect } from 'react'
+import React, { useState,useEffect } from 'react'
 import {Link} from 'react-router-dom'
-import {getUser } from "../utils/Common";
+import {getUser,removeUserSession, setUserSession } from "../utils/Common";
 
 //import elogo from './elogo.jpg'
 
 
-export default class Navbar extends Component {
+const Navbar=(props)=> {
 
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    { /*
-        setInterval was used in order to refresh the page constantly
-    in order to have the "logout" button show immediately in place of
-    "login", as soon as user logs out.
-    */}
-        setInterval(() => {
-            const userString = localStorage.getItem("user");
-            const user = JSON.parse(userString);
-            setUser(user);
-            }, [])
-    }, 5000);
-    const logout = () => {
-      return localStorage.removeItem("user");
-  }
-    render() {
+  // useEffect(() => {
+  //   { /*
+  //       setInterval was used in order to refresh the page constantly
+  //   in order to have the "logout" button show immediately in place of
+  //   "login", as soon as user logs out.
+  //   */}
+  //       setInterval(() => {
+  //         const user = getUser();
+  //           // const userString = localStorage.getItem("user");
+  //           // const user = JSON.parse(userString);
+  //           if(!user == null)
+  //          setIsLogged(true);
+  //          else
+  //          setIsLogged(false)
+  //           }, [])
+  //   }, 5000);
+  //   const logout = () => {
+  //    // setIsLogged(false);
+  //    setLoggedIn(!loggedIn);
+  //    removeUserSession();
+     
+  // }
+    
         return (
             <React.Fragment>
             <nav className="navbar navbar-inverse navbar-light bg-light" style={{fontSize: '1.8rem'}}>
@@ -42,10 +48,9 @@ export default class Navbar extends Component {
              
               <li><Link to="/aboutus">About Us</Link></li> 
               <li><Link to="/contactus">Contact Us</Link></li>
-              {user ? <li><Link to="/signin">Log In</Link></li> : <li><Link to="/signout" onClick={logout}>Sign Out</Link></li>}
-              
-              
-              
+              <li><Link to="/donate">Donate</Link></li>
+              {props.loggedIn ? <li><Link to="/signout" onClick={props.logout}>Sign Out</Link></li> : <li><Link to="/signin" onClick={props.login}>Sign In</Link></li>}
+       
               
             </ul>
          
@@ -57,4 +62,5 @@ export default class Navbar extends Component {
 </React.Fragment>
         )
     }
-}
+export default Navbar;
+

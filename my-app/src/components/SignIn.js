@@ -1,6 +1,7 @@
 import React ,{useState,useEffect}  from "react";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {setUserSession} from "../utils/Common"
+import { Route,Redirect } from "react-router";
 
 
 import axios from "axios";
@@ -11,25 +12,39 @@ const SignIn =(props) =>{
     const [user , setUser] = useState('');
     const [pswd , setPswd] =useState('');
     const [err, setErr] = useState(null);
-    const [loading , setLoading]= useState(false);
-
+    //const [loading , setLoading]= useState(false);
+  //   const logout = () => {
+  //     // setIsLogged(false);
+  //     setLoggedIn(!loggedIn);
+  //    return removeUserSession();
+      
+  //  }
+    let history = useHistory();
   const handleLogin =( ) =>{
      // props.history.push("/")
+     
      setErr(null);
-     setLoading(true);
-     axios.post("http://capstoneeee.herokuapp.com/api/auth/signin", {email: user, password : pswd})
+   //  setLoading(true);
+     axios.post("https://capstoneeee.herokuapp.com/api/auth/signin", {email: user, password : pswd})
         .then(res =>{
-           setLoading(false);
-           setUserSession(res.data.token, res.data.username)
-           props.history.push('/dashboard')
+          // setLoading(false);
+           setUserSession(res.data.accessToken, res.data.username, res.data.address,res.data.mobile, res.data.id,res.data.roles[0],res.data.email)
+          // if(res.status === 200 || res.status === 201 || res.status === 204)
+        
+          history.push('/dashboard')
             //alert(res.data.username)
+           // console.log(res)
+            //console.log(props);
+            
         }).catch(err =>{
-            setLoading(false);
-            if(err.response.status === 401 || err.response.status === 400){
-              setErr(err.response.data.message);}
-                else {
+           // setLoading(false);
+            //setErr(err.message)
+            //if(err.response.status === 401 || err.response.status === 400){
+             // setErr(err.response.data.message);}
+              //  else {
+               console.log(err)
                     setErr("user or password is wrong..kindly try again..")
-                }
+              //   }
             
             //console.log(err)
           //alert(err)

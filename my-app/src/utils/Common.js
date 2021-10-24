@@ -18,6 +18,7 @@ export  const getUser =() =>{
 export const getToken =() =>{
     return localStorage.getItem("token") || null;
 }
+<<<<<<< HEAD
 export const getEmail =() =>{
     return localStorage.getItem("email") || null;
 }
@@ -43,6 +44,29 @@ export const getId =() =>{
 export const getRoles =() =>{
     return localStorage.getItem("roles") || null;
 }
+=======
+export const setUserSession =(token, user,address,mobile,id,roles) =>{
+    sessionStorage.setItem("token" ,token);
+    sessionStorage.setItem("id" ,id);
+    sessionStorage.setItem("mobile" ,mobile);
+    sessionStorage.setItem("address", JSON.stringify(address));
+    sessionStorage.setItem("user", JSON.stringify(user));
+    sessionStorage.setItem("roles", JSON.stringify(roles));
+
+}
+export const getMobile =() =>{
+    return sessionStorage.getItem("mobile") || null;
+}
+export const getAddress =() =>{
+    return sessionStorage.getItem("address") || null;
+}
+export const getId =() =>{
+    return sessionStorage.getItem("id") || null;
+}
+export const getRoles =() =>{
+    return sessionStorage.getItem("roles") || null;
+}
+>>>>>>> 9565c7d33565cdc4a2354515f5ee708d93019ba0
 
 export const removeUserSession=() =>{
     localStorage.removeItem("token");

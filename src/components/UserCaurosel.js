@@ -1,10 +1,10 @@
 
 import React from "react";
-import img1 from "../images/img1.jpg"
-import img2 from "../images/img2.jpg"
-import img3 from "../images/img3.jpg"
+import img11 from "../images/img11.jpg"
+import img12 from "../images/img12.jpg"
+import img13 from "../images/img13.jpg"
 
-const Caurosel =() =>{
+const UserCaurosel =() =>{
     return(
         <div>
         <div className="container-fluid">
@@ -20,17 +20,17 @@ const Caurosel =() =>{
           <div className="carousel-inner">
       
             <div className="item active">
-              <img className="img-responsive" src ={img1} alt="teaching" style={{width: '100%' }}/>
+              <img className="img-responsive" src ={img11} alt="teaching" style={{width: '100%' }}/>
               
             </div>
       
             <div className="item">
-              <img className="img-responsive" src ={img2} alt="aged" style={{width: '100%'}}/>
+              <img className="img-responsive" src ={img12} alt="aged" style={{width: '100%'}}/>
               
             </div>
           
             <div className="item">
-              <img className="img-responsive" src ={img3} alt="smilies" style={{width: '100%'}} />
+              <img className="img-responsive" src ={img13} alt="smilies" style={{width: '100%'}} />
               
             </div>
         
@@ -52,4 +52,4 @@ const Caurosel =() =>{
     )
 }
 
-export default Caurosel;
+export default UserCaurosel;
